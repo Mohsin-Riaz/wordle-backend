@@ -97,6 +97,90 @@ wordle-backend/
 
 ## API Endpoints
 
+### Get Random Word
+
+Returns a random 6-letter word for the Wordle game.
+
+```http
+GET /api/getword
+```
+
+#### Response
+
+```javascript
+{
+    "word": "stream"
+}
+```
+
+| Status Code | Description                     |
+| ----------- | ------------------------------- |
+| 200         | Success - Returns a random word |
+
+---
+
+### Check Word Validity
+
+Verifies if a submitted word exists in the English dictionary.
+
+```http
+GET /api/checkword?word=stream
+```
+
+#### Query Parameters
+
+| Parameter | Type   | Description                     |
+| --------- | ------ | ------------------------------- |
+| word      | string | The word to validate (required) |
+
+#### Success Response
+
+```javascript
+{
+    "word": "stream",
+}
+```
+
+Status Code: 200
+
+#### Error Responses
+
+**Missing Word Parameter**
+
+```javascript
+{
+    "error": "Word parameter is required"
+}
+```
+
+Status Code: 400
+
+**Word Not Found**
+
+```javascript
+{
+    "error": "Word not found"
+}
+```
+
+Status Code: 404
+
+| Status Code | Description                             |
+| ----------- | --------------------------------------- |
+| 200         | Success                                 |
+| 400         | Bad Request - Word parameter is missing |
+| 404         | Not Found - Word not found              |
+
+### Example Usage
+
+```javascript
+// Get a random word
+curl http://localhost:3000/api/getword
+
+// Check if a word is valid
+curl http://localhost:3000/api/checkword?word=stream
+```
+
 ## Dependencies
 
 -   express: Web framework for Node.js
