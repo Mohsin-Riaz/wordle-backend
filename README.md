@@ -77,16 +77,22 @@ npm test -- --watch
 
 ```
 wordle-backend/
-├── src/
-│   ├── index.js          # Application entry point
-│   ├── routes/           # API routes
-│   ├── controllers/      # Route controllers
-│   ├── services/         # Business logic
-│   └── utils/            # Helper functions
-├── tests/                # Test files
-├── .env                  # Environment variables
-├── .gitignore           # Git ignore file
-└── package.json         # Project dependencies and scripts
+├── .gitignore                     # Git ignore configuration
+├── README.md                      # Project documentation
+├── docker-compose.yaml            # Docker compose configuration
+├── index.js                       # Main application entry point
+├── jest.config.js                 # Jest testing configuration
+├── package.json                   # Project dependencies and scripts
+├── src/                          # Source code directory
+│   ├── api/                      # API integration directory
+│   │   └── api_calls.js         # WordsAPI integration module
+│   ├── controllers/              # Controllers directory
+│   │   └── wordsController.js   # Words game logic controller
+│   └── routes/                  # Routes directory
+│       └── wordsRouter.js       # Words API endpoints router
+└── tests/                       # Tests directory
+    └── unit/                    # Unit tests directory
+        └── wordsRouter.test.js  # Router tests
 ```
 
 ## API Endpoints
