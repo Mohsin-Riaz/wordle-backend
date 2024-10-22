@@ -113,9 +113,9 @@ GET /api/getword
 }
 ```
 
-| Status Code | Description                     |
-| ----------- | ------------------------------- |
-| 200         | Success - Returns a random word |
+| Status Code | Description |
+| ----------- | ----------- |
+| 200         | Success     |
 
 ---
 
