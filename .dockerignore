@@ -1,0 +1,11 @@
+node_modules
+npm-debug.log
+.git
+.gitignore
+.env
+tests/
+README.md
+docker-compose.yaml
+serverless.yml
+jest.config.js
+.DS_Store
