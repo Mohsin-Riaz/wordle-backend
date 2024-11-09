@@ -10,7 +10,7 @@ const getWord = async (req, res) => {
         wordTrys++;
         if (wordTrys >= 5) return res.status(400);
     }
-    return res.send(word).status(200);
+    return res.json({ word: word }).status(200);
 };
 
 const checkWord = async (req, res) => {
