@@ -1,16 +1,15 @@
 const { apiGetWord, apiSearchForWord } = require('../api/api_calls');
 
 const getWord = async (req, res) => {
-    var word = '';
-    var wordTrys = 0;
-    while (word.length !== 6) {
-        response = await apiGetWord();
-        word = response.word;
-        word.replace(/[^a-zA-Z]/g, '');
-        wordTrys++;
-        if (wordTrys >= 5) return res.status(400);
+    let word = '';
+    for (let attempt = 0; attempt < 5; attempt++) {
+        const response = await apiGetWord();
+        word = response.word.replace(/[^a-zA-Z]/g, '');
+        if (word.length === 6) {
+            return res.status(200).json({ word });
+        }
     }
-    return res.json({ word: word }).status(200);
+    return res.status(400).json({ error: 'Failed to get a valid word' });
 };
 
 const checkWord = async (req, res) => {

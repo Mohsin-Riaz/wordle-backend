@@ -14,17 +14,17 @@ describe('API Routes', () => {
         expect(response.body.word).toHaveLength(6); // Checks if a six letter word was received
     });
 
-    // //CHECK IF GET WORD FAILED
-    // it('GET /api/getword should not return a word', async () => {
-    //     const response = await request(app).get('/api/getword');
-    //     expect(response.status).not.toBe(404);
-    // });
+    /* //CHECK IF WORD IS NOT SUITABLE
+    it('GET /api/getword should return a word', async () => {
+        const response = await rateLimitedRequest(() =>
+            request(app).get('/api/getword')
+        );
 
-    // //CHECK IF AUTHORIZED
-    // it('GET /api/getword should not return a word', async () => {
-    //     const response = await request(app).get('/api/getword');
-    //     expect(response.status).not.toBe(403);
-    // });
+        expect(response.status).toBe(200);
+        expect(response.type).toBe('application/json');
+        expect(response.body.word).toHaveLength(6); // Checks if a six letter word was received
+    });
+    */
 
     // CHECK If WORD EXISTS
     it('GET /api/checkword should return correct word data', async () => {
