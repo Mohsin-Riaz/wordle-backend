@@ -34,6 +34,7 @@ yarn-error.log*
 # Serverless
 .serverless/
 .dynamodb/
+serverless.yml
 
 # Testing
 coverage/

@@ -1,12 +1,14 @@
-version: '3'
+version: '3.8'
+
 services:
-    app:
-        image: node:16
-        working_dir: /usr/src/app
-        volumes:
-            - ./:/usr/src/app
+    wordle-backend:
+        build: .
+        container_name: wordle-backend
         ports:
-            - '5000:5000'
-        command: npm start
+            - '5001:5001'
         environment:
             - NODE_ENV=development
+        volumes:
+            - .:/app
+            - /app/node_modules
+        command: npm start

@@ -1,7 +1,15 @@
 const { apiGetWord, apiSearchForWord } = require('../api/api_calls');
 
 const getWord = async (req, res) => {
-    const word = await apiGetWord();
+    var word = '';
+    var wordTrys = 0;
+    while (word.length !== 6) {
+        response = await apiGetWord();
+        word = response.word;
+        word.replace(/[^a-zA-Z]/g, '');
+        wordTrys++;
+        if (wordTrys >= 5) return res.status(400);
+    }
     return res.send(word).status(200);
 };
 
@@ -11,7 +19,6 @@ const checkWord = async (req, res) => {
         return res.status(400).json({ error: 'Word parameter is required' });
 
     const response = await apiSearchForWord(word);
-    console.log(response);
 
     if (!response || response == 404)
         return res.status(404).json({ error: 'Word not found' });
