@@ -6,7 +6,7 @@ const getWord = async (req, res) => {
         const response = await apiGetWord();
         word = response.word.replace(/[^a-zA-Z]/g, '');
         if (word.length === 6) {
-            return res.status(200).json({ word });
+            return res.status(200).json({ word: word.toUpperCase() });
         }
     }
     return res.status(400).json({ error: 'Failed to get a valid word' });
@@ -17,7 +17,7 @@ const checkWord = async (req, res) => {
     if (!word)
         return res.status(400).json({ error: 'Word parameter is required' });
 
-    const response = await apiSearchForWord(word);
+    const response = await apiSearchForWord(word); //makes call to outside api
 
     if (!response || response == 404)
         return res.status(404).json({ error: 'Word not found' });

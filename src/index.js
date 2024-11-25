@@ -6,21 +6,22 @@ const rateLimit = require('express-rate-limit');
 const cors = require('cors');
 
 const limiter = rateLimit({
-    windowMs: 1000, // 1 second
+    windowMs: 3000, // 3 seconds
     max: 1, // limit each IP to 1 request per windowMs
     message: {
-        error: 'Too many requests, please try again in 1 second',
+        error: 'Too many requests, please try again in 3 second',
     },
     standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
     legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 });
 
 const corsOptions = {
+    methods: ['GET'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
     origin: [
         'mohsinriaz.ca/wordle-app',
         'http://mohsinriaz.ca/wordle-app',
         'https://mohsinriaz.ca/wordle-app',
-        'mohsinriaz.ca',
         'http://mohsinriaz.ca',
         'https://mohsinriaz.ca',
         !!process.env.NODE_ENV ? process.env.FRONTEND_URL : undefined,
